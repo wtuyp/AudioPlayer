@@ -12,22 +12,11 @@
 
 @implementation AppDelegate
 
-@synthesize window = _window;
-@synthesize navController = _navController;
-
-- (void)dealloc
-{
-    [_window release];
-    [_navController release];
-    
-    [super dealloc];
-}
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    ViewController *viewController = [[[ViewController alloc] initWithNibName:@"ViewController" bundle:nil] autorelease];
+    ViewController *viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
     self.navController = [[UINavigationController alloc] initWithRootViewController:viewController];
     self.window.rootViewController = self.navController;
     [self.window makeKeyAndVisible];

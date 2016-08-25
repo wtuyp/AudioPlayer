@@ -307,11 +307,5 @@ NSString *stopImage = @"stop.png";
 	}
 }
 
-- (void)dealloc 
-{
-    [super dealloc];
-    [image release];
-}
-
 
 @end

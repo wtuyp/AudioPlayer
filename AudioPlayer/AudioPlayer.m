@@ -25,16 +25,6 @@
     return self;
 }
 
-- (void)dealloc
-{
-    [super dealloc];
-    [url release];
-    [streamer release];
-    [button release];
-    [timer invalidate];
-}
-
-
 - (BOOL)isProcessing
 {
     return [streamer isPlaying] || [streamer isWaiting] || [streamer isFinishing] ;
@@ -78,13 +68,11 @@
 
     button.image = [UIImage imageNamed:playImage];
     button = nil; // 避免播放器的闪烁问题        
-    [button release];     
     
     // release streamer
 	if (streamer)
 	{        
 		[streamer stop];
-		[streamer release];
 		streamer = nil;
         
         // remove notification observer for streamer

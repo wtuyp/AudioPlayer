@@ -26,6 +26,7 @@
 		631FAEA115AB1F0F00CFAF36 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 631FAEA015AB1F0F00CFAF36 /* QuartzCore.framework */; };
 		631FAEA315AB1F4300CFAF36 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 631FAEA215AB1F4200CFAF36 /* AudioToolbox.framework */; };
 		631FAEA515AB1F6400CFAF36 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 631FAEA415AB1F6400CFAF36 /* CFNetwork.framework */; };
+		EB5F8C8A1D6EC4AE00F2297A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB5F8C891D6EC4AE00F2297A /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,7 @@
 		631FAEA015AB1F0F00CFAF36 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		631FAEA215AB1F4200CFAF36 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		631FAEA415AB1F6400CFAF36 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		EB5F8C891D6EC4AE00F2297A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 		322834AF15A542B100E3C085 = {
 			isa = PBXGroup;
 			children = (
+				EB5F8C891D6EC4AE00F2297A /* Default-568h@2x.png */,
 				322834C415A542B100E3C085 /* AudioPlayerDemo */,
 				322834BD15A542B100E3C085 /* Frameworks */,
 				322834BB15A542B100E3C085 /* Products */,
@@ -214,6 +217,7 @@
 				631FAE8815AB19EE00CFAF36 /* AudioCell.xib in Resources */,
 				631FAE9A15AB1B1F00CFAF36 /* loading.png in Resources */,
 				631FAE9D15AB1B1F00CFAF36 /* play.png in Resources */,
+				EB5F8C8A1D6EC4AE00F2297A /* Default-568h@2x.png in Resources */,
 				631FAE9F15AB1B1F00CFAF36 /* stop.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -303,6 +307,8 @@
 		322834D915A542B100E3C085 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AudioPlayerDemo/AudioPlayerDemo-Prefix.pch";
 				INFOPLIST_FILE = "AudioPlayerDemo/AudioPlayerDemo-Info.plist";
@@ -314,6 +320,8 @@
 		322834DA15A542B100E3C085 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AudioPlayerDemo/AudioPlayerDemo-Prefix.pch";
 				INFOPLIST_FILE = "AudioPlayerDemo/AudioPlayerDemo-Info.plist";
