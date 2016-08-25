@@ -10,8 +10,6 @@
 
 @implementation AudioCell
 
-@synthesize titleLabel = _titleLabel, artistLabel = _artistLabel ,audioButton = _audioButton;
-
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];

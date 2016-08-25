@@ -26,7 +26,7 @@ extern NSString *playImage, *stopImage;
     UIImageView *loadingView;
 }
 
-@property (nonatomic, retain) UIImage *image;
+@property (nonatomic, strong) UIImage *image;
 
 - (id)initWithFrame:(CGRect)frame;
 - (void)startSpin;

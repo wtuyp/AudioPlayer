@@ -45,6 +45,7 @@
         timer = [NSTimer scheduledTimerWithTimeInterval:0.1
                                              invocation:invocation 
                                                 repeats:YES];
+        [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
         
         // register the streamer on notification
         [[NSNotificationCenter defaultCenter] addObserver:self

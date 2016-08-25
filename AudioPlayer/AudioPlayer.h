@@ -18,9 +18,9 @@
     NSTimer *timer;
 }
 
-@property (nonatomic, retain) AudioStreamer *streamer;
-@property (nonatomic, retain) AudioButton *button;
-@property (nonatomic, retain) NSURL *url;
+@property (nonatomic, strong) AudioStreamer *streamer;
+@property (nonatomic, strong) AudioButton *button;
+@property (nonatomic, strong) NSURL *url;
 
 - (void)play;
 - (void)stop;

@@ -11,9 +11,9 @@
 
 @interface AudioCell : UITableViewCell
 
-@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
-@property (strong, nonatomic) IBOutlet UILabel *artistLabel;
-@property (strong, nonatomic) IBOutlet AudioButton *audioButton;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *artistLabel;
+@property (strong, nonatomic) AudioButton *audioButton;
 
 - (void)configurePlayerButton;
 
