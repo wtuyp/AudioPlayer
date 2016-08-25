@@ -89,8 +89,6 @@ extern NSString * const ASStatusChangedNotification;
 
 @interface AudioStreamer : NSObject
 {
-	NSURL *url;
-
 	//
 	//  Special threading consideration:
 	//	The audioQueue property should only ever be accessed inside a
@@ -156,6 +154,7 @@ extern NSString * const ASStatusChangedNotification;
 @property (readonly) double duration;
 @property (readwrite) UInt32 bitRate;
 @property (readonly) NSDictionary *httpHeaders;
+@property (strong, nonatomic) NSURL *url;
 
 - (id)initWithURL:(NSURL *)aURL;
 - (void)start;

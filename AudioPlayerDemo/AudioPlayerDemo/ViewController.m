@@ -27,7 +27,7 @@ static NSArray *itemArray;
     
     itemArray = [NSArray arrayWithObjects:
                   [NSDictionary dictionaryWithObjectsAndKeys:@"告白气球", @"song", @"周杰伦", @"artise", @"http://sc1.111ttt.com/2016/1/06/25/199251943186.mp3", @"url", nil],
-                  [NSDictionary dictionaryWithObjectsAndKeys:@"今天", @"song", @"刘德华", @"artise", @"http://y1.eoews.com/assets/ringtones/2012/5/18/34045/hi4dwfmrxm2citwjcc5841z3tiqaeeoczhbtfoex.mp3", @"url", nil],
+                  [NSDictionary dictionaryWithObjectsAndKeys:@"告白气球", @"song", @"周杰伦", @"artise", @"http://sc1.111ttt.com/2016/1/06/25/199251943186.mp3", @"url", nil],
                   [NSDictionary dictionaryWithObjectsAndKeys:@"K歌之王", @"song", @"陈奕迅", @"artise", @"http://y1.eoews.com/assets/ringtones/2012/5/17/34031/axiddhql6nhaegcofs4hgsjrllrcbrf175oyjuv0.mp3", @"url", nil],
                   [NSDictionary dictionaryWithObjectsAndKeys:@"知足", @"song", @"五月天", @"artise", @"http://y1.eoews.com/assets/ringtones/2012/5/17/34016/eeemlurxuizy6nltxf2u1yris3kpvdokwhddmeb0.mp3", @"url", nil],
                   [NSDictionary dictionaryWithObjectsAndKeys:@"桔子香水", @"song", @"任贤齐", @"artise", @"http://y1.eoews.com/assets/ringtones/2012/6/29/36195/mx8an3zgp2k4s5aywkr7wkqtqj0dh1vxcvii287a.mp3", @"url", nil],
@@ -50,10 +50,10 @@ static NSArray *itemArray;
         [_audioPlayer stop];
         
         _audioPlayer.button = button; 
-        _audioPlayer.url = [NSURL URLWithString:[item objectForKey:@"url"]];
-
+        _audioPlayer.url = [item objectForKey:@"url"];
         [_audioPlayer play];
-    }   
+//        [_audioPlayer playWithURL:item[@"url"]];
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

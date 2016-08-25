@@ -10,31 +10,20 @@
 #import "AudioButton.h"
 #import "AudioStreamer.h"
 
-@implementation AudioPlayer
-
-@synthesize streamer, button, url;
-
-
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        
-    }
-
-    return self;
+@implementation AudioPlayer {
+    NSTimer *timer;
 }
 
 - (BOOL)isProcessing
 {
-    return [streamer isPlaying] || [streamer isWaiting] || [streamer isFinishing] ;
+    return [_streamer isPlaying] || [_streamer isWaiting] || [_streamer isFinishing] ;
 }
 
 - (void)play
 {        
-    if (!streamer) {
+    if (!_streamer) {
         
-        self.streamer = [[AudioStreamer alloc] initWithURL:self.url];
+        self.streamer = [[AudioStreamer alloc] initWithURL:[NSURL URLWithString:self.url]];
         
         // set up display updater
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
@@ -51,44 +40,74 @@
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(playbackStateChanged:)
                                                      name:ASStatusChangedNotification
-                                                   object:streamer];
+                                                   object:_streamer];
     }
     
-    if ([streamer isPlaying]) {
-        [streamer pause];
+    if ([_streamer isPlaying]) {
+        [_streamer pause];
     } else {
-        [streamer start];
+        [_streamer start];
     }
 }
 
+- (void)playWithURL:(NSString *)aURL {
+    if (!_streamer) {
+        
+        self.streamer = [[AudioStreamer alloc] init];
+        
+        // set up display updater
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
+                                    [self methodSignatureForSelector:@selector(updateProgress)]];
+        [invocation setSelector:@selector(updateProgress)];
+        [invocation setTarget:self];
+        
+        timer = [NSTimer scheduledTimerWithTimeInterval:0.1
+                                             invocation:invocation
+                                                repeats:YES];
+        [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+        
+        // register the streamer on notification
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(playbackStateChanged:)
+                                                     name:ASStatusChangedNotification
+                                                   object:_streamer];
+    }
+    
+    if ([_streamer isPlaying]) {
+        [_streamer pause];
+    } else {
+        _streamer.url = [NSURL URLWithString:aURL];
+        [_streamer start];
+    }
+}
 
 - (void)stop
 {    
-    [button setProgress:0];
-    [button stopSpin];
+    [_button setProgress:0];
+    [_button stopSpin];
 
-    button.image = [UIImage imageNamed:playImage];
-    button = nil; // 避免播放器的闪烁问题        
+    _button.image = [UIImage imageNamed:playImage];
+    _button = nil; // 避免播放器的闪烁问题
     
     // release streamer
-	if (streamer)
+	if (_streamer)
 	{        
-		[streamer stop];
-		streamer = nil;
+		[_streamer stop];
+		_streamer = nil;
         
         // remove notification observer for streamer
 		[[NSNotificationCenter defaultCenter] removeObserver:self 
                                                         name:ASStatusChangedNotification
-                                                      object:streamer];		
+                                                      object:_streamer];
 	}
 }
 
 - (void)updateProgress
 {
-    if (streamer.progress <= streamer.duration ) {
-        [button setProgress:streamer.progress/streamer.duration];        
+    if (_streamer.progress <= _streamer.duration ) {
+        [_button setProgress:_streamer.progress/_streamer.duration];
     } else {
-        [button setProgress:0.0f];        
+        [_button setProgress:0.0f];
     }
 }
 
@@ -98,26 +117,26 @@
  */
 - (void)playbackStateChanged:(NSNotification *)notification
 {
-	if ([streamer isWaiting])
+	if ([_streamer isWaiting])
 	{
-        button.image = [UIImage imageNamed:stopImage];
-        [button startSpin];
-    } else if ([streamer isIdle]) {
-        button.image = [UIImage imageNamed:playImage];
+        _button.image = [UIImage imageNamed:stopImage];
+        [_button startSpin];
+    } else if ([_streamer isIdle]) {
+        _button.image = [UIImage imageNamed:playImage];
 		[self stop];		
-	} else if ([streamer isPaused]) {
-        button.image = [UIImage imageNamed:playImage];
-        [button stopSpin];
-        [button setColourR:0.0 G:0.0 B:0.0 A:0.0];
-    } else if ([streamer isPlaying] || [streamer isFinishing]) {
-        button.image = [UIImage imageNamed:stopImage];
-        [button stopSpin];        
+	} else if ([_streamer isPaused]) {
+        _button.image = [UIImage imageNamed:playImage];
+        [_button stopSpin];
+        [_button setColourR:0.0 G:0.0 B:0.0 A:0.0];
+    } else if ([_streamer isPlaying] || [_streamer isFinishing]) {
+        _button.image = [UIImage imageNamed:stopImage];
+        [_button stopSpin];
 	} else {
         
     }
     
-    [button setNeedsLayout];    
-    [button setNeedsDisplay];
+    [_button setNeedsLayout];
+    [_button setNeedsDisplay];
 }
 
 

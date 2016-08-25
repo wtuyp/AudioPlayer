@@ -210,6 +210,7 @@ void ASReadStreamCallBack
 @synthesize state;
 @synthesize bitRate;
 @synthesize httpHeaders;
+@synthesize url;
 
 
 - (id)initWithURL:(NSURL *)aURL

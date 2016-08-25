@@ -11,18 +11,14 @@
 @class AudioButton;
 @class AudioStreamer;
 
-@interface AudioPlayer : NSObject {
-    AudioStreamer *streamer;
-    AudioButton *button;   
-    NSURL *url;
-    NSTimer *timer;
-}
+@interface AudioPlayer : NSObject
 
 @property (nonatomic, strong) AudioStreamer *streamer;
 @property (nonatomic, strong) AudioButton *button;
-@property (nonatomic, strong) NSURL *url;
+@property (nonatomic, copy) NSString *url;
 
 - (void)play;
+- (void)playWithURL:(NSString *)aURL;
 - (void)stop;
 - (BOOL)isProcessing;
 
